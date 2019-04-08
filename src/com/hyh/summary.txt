@@ -82,6 +82,23 @@
 
         devops
 
+        CollectionUtils工具类
+            String[] arrayA = new String[] { "A", "B", "C", "D", "E", "F" };
+            String[] arrayB = new String[] { "B", "D", "F", "G", "H", "K" };
+
+            List<String> listA = Arrays.asList(arrayA);
+            List<String> listB = Arrays.asList(arrayB);
+
+            1:ArrayUtils.toString(CollectionUtils.union(listA, listB))              2个集合的并集
+            //[A, B, C, D, E, F, G, H, K]
+            2:ArrayUtils.toString(CollectionUtils.intersection(listA, listB))       2个集合的交集
+            //[B, D, F]
+            3:ArrayUtils.toString(CollectionUtils.disjunction(listA, listB))        2个集合的补集
+            //[A, C, E, G, H, K]
+            4:ArrayUtils.toString(CollectionUtils.subtract(listA, listB))           2个集合的差集
+            //[A, C, E]
+
+
 
 
 
