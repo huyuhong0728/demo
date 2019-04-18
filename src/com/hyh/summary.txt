@@ -1,0 +1,125 @@
+
+		List<Integer> oldTag = oldsTag.stream().map(ProductTagDTO::getTagCode).collect(Collectors.toList());
+
+		List<Integer> addList = newTag.stream().filter(code -> !oldTag.contains(code)).collect(Collectors.toList());
+
+		stream流的map是遍历操作，可以提取类里的对象，并用collect将其转换为集合，其filter操作 内容返回true则将此数据保留下来
+
+		equal相等，hashcode一定相等反过来就不是了
+
+		hashSet方法，是先判断hashcode是否相等，如果相等，再用equal方法判断是否相等，如果都相等，则不能存入，因为hashSet不能存入重复的值
+
+		cglib 代理的是普通的类，而jdk代理的是接口。jdk 只能代理接口，而cglib只能代理普通类，可以在spring配置中强制使用cglib代理
+
+		数据库事务的特性：
+
+			1：原子性	（执行时同时失败或同时消失）
+
+			2：一致性	（一致状态是数据库中的数据应满足完整性约束）
+
+			3：隔离性	（多个事务并发时，一个事务的执行不影响其他事务的执行）
+
+			4：持久性	（一个事务一旦提交，他对数据库的修改应该永远保存在数据库中
+
+
+		//此运行结果为10个10，并不是0到9，为什么呢，因为用了var，for循环直接执行完了，才执行setTimeout内容
+		for (var i = 0; i < 10; i++) {
+				setTimeout(function() { console.log(i); }, 100 * i);
+		}
+
+		//此运行结果为0到9，并不是10个10，使用了立即执行的函数表达式(llfe)，，循环一次，立即执行，用法就是在函数表达式后加()即可
+		for (var i = 0; i < 10; i++) {
+			(function (a) {
+				setTimeout(function () {
+					console.log(a);
+				}, 1000 * a);
+			})(i);
+		}
+
+		//定义一个数组，可以将此数组解构，f代表1，...s代表[2,3,4],如果不用...，则第2位为2，一次类推
+		const input = [1, 2, 3, 4];
+		const [f, ...s] = input;
+		console.log(f);
+		console.log(s);
+
+		//传一个对象，可以只要需要的对象           { label: string }可以变成接口显示 替换成Test即可
+		function printLabel(labelledObj: { label: string }) {
+			console.log(labelledObj.label);
+		}
+		let myObj = { size: 10, label: "Size 10 Object" };
+		printLabel(myObj);
+
+		interface Test {
+			label: string;
+		}
+
+		调用内部接口可以用autowired注解				调用spring new出来的
+		调用网关里子系统的接口，可以用reference注解						**************注意，是注入接口，不是实现类，切记，搞了半天才搞好，记住		调用dubbo的服务交给spring
+		调用不同网关的接口，使用@ReferGateway(path = "trd-portrait", timeout = 5000)注解  **************注意，是注入接口，不是实现类，切记，搞了半天才搞好，记住		调用网关的dubbo服务交给spring
+
+
+		@JsonIgnore注解作用在属性或方法上，使用的属性，返回json时不会返回标注的属性		@JsonIgnoreProperties注解和@JsonIgnore注解功能相同，只不过前者是使用在类上
+
+		@PostConstruct注解可以加在属性或方法上，而且方法为无返回值的非静态方法，改变servlet的生命周期，被注解的方法会在构造方法之后，init方法之前执行
+
+
+		设计模式6大原则
+
+		总原则-开闭原则
+			不能修改原有代码，只能扩展
+
+		1：单一职责
+			不要存在导致类变更的原因，每个类应该实现单一的职责，不然就把该类拆分
+
+		2：里氏替换原则
+			任何基类可以出现的地方，子类一定可以出现。里氏替换原则是继承服用的基石，只有当衍生类可以替换基类，
+		功能不受影响时，基类才能真正被复用。
+
+		3：依赖倒转原则
+			写代码时用到具体类时，不与
+
+        Jenkins
+
+        devops
+
+        CollectionUtils工具类
+            String[] arrayA = new String[] { "A", "B", "C", "D", "E", "F" };
+            String[] arrayB = new String[] { "B", "D", "F", "G", "H", "K" };
+
+            List<String> listA = Arrays.asList(arrayA);
+            List<String> listB = Arrays.asList(arrayB);
+
+            1:ArrayUtils.toString(CollectionUtils.union(listA, listB))              2个集合的并集
+            //[A, B, C, D, E, F, G, H, K]
+            2:ArrayUtils.toString(CollectionUtils.intersection(listA, listB))       2个集合的交集
+            //[B, D, F]
+            3:ArrayUtils.toString(CollectionUtils.disjunction(listA, listB))        2个集合的补集
+            //[A, C, E, G, H, K]
+            4:ArrayUtils.toString(CollectionUtils.subtract(listA, listB))           2个集合的差集
+            //[A, C, E]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
